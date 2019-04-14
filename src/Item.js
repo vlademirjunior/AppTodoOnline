@@ -13,7 +13,10 @@ export default class Item extends Component {
         this.excluir = this.excluir.bind(this);
     }
 
+
     excluir() {
+        this.props.onDelete(this.props.data.id);
+        /*
         fetch(this.props.url + '/' + this.props.data.id, {
             method: "DELETE",
             headers: {
@@ -25,7 +28,9 @@ export default class Item extends Component {
                 alert("Item exclúido com suceso!");
                 this.props.loadFunction();
             });
+            */
     }
+
 
     marcar() {
         let state = this.state;
@@ -40,6 +45,11 @@ export default class Item extends Component {
             done = 'nao';
         }
 
+        this.setState(state);
+
+        this.props.onUpdate(this.props.data.id, done);
+        /*
+
         fetch(this.props.url + '/' + this.props.data.id, {
             method: "PUT",
             headers: {
@@ -53,6 +63,7 @@ export default class Item extends Component {
             .then((json) => {
                 alert("Item atualizado com suceso!");
             });
+            */
 
         this.setState(state);
     }
